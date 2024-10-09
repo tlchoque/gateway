@@ -2,61 +2,64 @@
     "version": 3,
     "configurePresets": [
         {
-            "name": "windows-base",
-            "hidden": true,
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/out/build/${presetName}",
-            "installDir": "${sourceDir}/out/install/${presetName}",
-          "cacheVariables": {
-            "CMAKE_C_COMPILER": "cl.exe",
-            "CMAKE_CXX_COMPILER": "cl.exe",
-            "BUILD_SHARED_LIBS":  "OFF"
-          },
-            "condition": {
-                "type": "equals",
-                "lhs": "${hostSystemName}",
-                "rhs": "Windows"
-            }
-        },
-        {
-            "name": "x64-debug",
-            "displayName": "x64 Debug",
-            "inherits": "windows-base",
+            "name": "win-base",
+            "description": "Windows Base Configuration",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "build",
             "architecture": {
                 "value": "x64",
                 "strategy": "external"
             },
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe",
+                "CMAKE_CXX_FLAGS": "/DWIN32 /D_WINDOWS /EHsc /utf-8 /std:c++20",
+				"BUILD_SHARED_LIBS":"OFF"
             }
         },
         {
-            "name": "x64-release",
-            "displayName": "x64 Release",
-            "inherits": "x64-debug",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
-        },
-        {
-            "name": "x86-debug",
-            "displayName": "x86 Debug",
-            "inherits": "windows-base",
+            "name": "linux-base",
+            "description": "Linux Base Configuration",
+            "generator": "Unix Makefiles",
+            "binaryDir": "build",
             "architecture": {
-                "value": "x86",
+                "value": "x64",
                 "strategy": "external"
             },
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug"
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++",
+                "CMAKE_CXX_FLAGS": "-std=c++20 -Wall -Wextra", 
+                "CMAKE_MAKE_PROGRAM": "/usr/bin/make"
             }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "win-debug",
+            "description": "Windows Debug Build",
+            "configurePreset": "win-base",
+            "configuration": "Debug"
         },
         {
-            "name": "x86-release",
-            "displayName": "x86 Release",
-            "inherits": "x86-debug",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release"
-            }
+            "name": "win-release",
+            "description": "Windows Release Build",
+            "configurePreset": "win-base",
+            "configuration": "Release"
+        },
+        {
+            "name": "linux-debug",
+            "description": "Linux Debug Build",
+            "configurePreset": "linux-base",
+            "configuration": "Debug"
+        },
+        {
+            "name": "linux-release",
+            "description": "Linux Release Build",
+            "configurePreset": "linux-base",
+            "configuration": "Release"
         }
     ]
 }
