@@ -27,7 +27,7 @@ Before you begin, ensure you have the following installed:
 3. ```bash
    cmake --build ./build
    ```
-Finally look for Editor.exe within build/Debug folder
+  Finally look for Editor.exe within build/Debug folder
 
  
 [1]: https://aka.ms/vs/17/release/vs_BuildTools.exe 
