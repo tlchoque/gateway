@@ -8,9 +8,9 @@ This project demonstrates the use of ImGui and SFML for creating graphical user 
 Before you begin, ensure you have the following installed:
 
 - **C++ Compiler**: (e.g., GCC, Clang, MSVC) 
-Download [Visual Studio Build Tools 17 2022][1]
-- **CMake**: from 3.12 version
-Download [CMake](https://cmake.org/download/). Add its path. 
+   Download [Visual Studio Build Tools 17 2022][1]
+- **CMake**: from 3.12 version.
+   Download [CMake](https://cmake.org/download/). Add its path. 
 
 ## Compilation
 
