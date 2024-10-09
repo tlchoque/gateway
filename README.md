@@ -18,13 +18,15 @@ Before you begin, ensure you have the following installed:
    ```bash
    git clone -recursive https://github.com/tlchoque/gateway.git 
    ```
-   cd gateway
-
 2. ```bash
-   cmake --preset "win-base"
+   cd gateway
    ```
 
 3. ```bash
+   cmake --preset "win-base"
+   ```
+
+4. ```bash
    cmake --build ./build
    ```
   Finally look for Editor.exe within build/Debug folder
