@@ -16,7 +16,7 @@ Before you begin, ensure you have the following installed:
 
 1. **Clone the Repository**:
    ```bash
-   git clone -recursive https://github.com/tlchoque/gateway.git 
+   git clone --recursive https://github.com/tlchoque/gateway.git 
    ```
 2. ```bash
    cd gateway
