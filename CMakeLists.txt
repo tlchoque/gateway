@@ -1,7 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.15)
 
 project (
-	Template
+	Editor
 	LANGUAGES CXX
 	VERSION 1.0
 )
@@ -9,7 +9,7 @@ project (
 add_executable (
 	${CMAKE_PROJECT_NAME}
 	"src/main.cpp"
-)
+ "src/gateway.h" "src/gateway.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
@@ -37,9 +37,13 @@ add_subdirectory(dependencies/imgui-sfml)
 set (SFML_STATIC_LIBRARIES TRUE)
 add_subdirectory (dependencies/sfml)
 
-
 target_link_libraries (
 	${CMAKE_PROJECT_NAME}
 	sfml-system sfml-window sfml-graphics sfml-network sfml-audio
 	ImGui-SFML::ImGui-SFML
+)
+
+add_custom_command(TARGET ${CMAKE_PROJECT_NAME}
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy ${PROJECT_SOURCE_DIR}/assets/arial.ttf $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}> 
 )
